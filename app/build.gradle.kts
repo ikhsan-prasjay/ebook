@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    // Tambahkan baris ini untuk menerapkan plugin
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -27,18 +29,14 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "11"
+        jvmTarget = "1.8"
     }
-}
-
-android {
-    // ...
     buildFeatures {
-        viewBinding = true // Aktifkan ViewBinding
+        viewBinding = true
     }
 }
 
@@ -49,6 +47,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
     // Firebase
+    // Pastikan Anda menggunakan BOM (Bill of Materials) untuk versi yang konsisten
     implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
     implementation("com.google.firebase:firebase-database-ktx")
     implementation("com.google.firebase:firebase-analytics-ktx")
