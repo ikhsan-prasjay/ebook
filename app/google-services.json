@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "523151454929",
+    "project_id": "ebook-bc28f",
+    "storage_bucket": "ebook-bc28f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:523151454929:android:baf240eca4d09351538bf0",
+        "android_client_info": {
+          "package_name": "com.ega.ebook"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_pr1GNgyl7t_AK9NvMj84WBo9qslt4U4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

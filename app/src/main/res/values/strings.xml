@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Ebook</string>
+
+    <string name="meditasi_ringan_content">
+        "<b>Durasi:</b> 3–5 menit\n\n"
+        "<b>Tujuan:</b> Menenangkan pikiran cepat, cocok dilakukan di sela aktivitas.\n\n"
+        "<b>Langkah:</b>\n"
+        "• Duduk santai atau berdiri tegak, pejamkan mata.\n"
+        "• Tarik napas perlahan lewat hidung selama 4 detik.\n"
+        "• Tahan sebentar 2 detik, lalu hembuskan pelan lewat mulut 6 detik.\n"
+        "• Fokus pada napas masuk dan keluar.\n"
+        "• Ulangi 5–10 kali.\n\n"
+        "👉 <b>Efek:</b> Pikiran jadi lebih tenang, cocok kalau lagi cemas sebentar atau lelah."
+    </string>
+
+    <string name="meditasi_sedang_content">
+        "<b>Durasi:</b> 10–20 menit\n\n"
+        "<b>Tujuan:</b> Melatih kesadaran penuh (mindfulness) terhadap tubuh dan pikiran.\n\n"
+        "<b>Langkah:</b>\n"
+        "• Duduk di kursi atau lantai dengan posisi punggung tegak.\n"
+        "• Tarik napas dalam, lalu keluarkan perlahan.\n"
+        "• Arahkan perhatian pada sensasi tubuh: napas, denyut jantung, atau titik tubuh yang menempel di lantai/kursi.\n"
+        "• Biarkan pikiran datang dan pergi tanpa dihakimi, cukup “sadar” lalu kembali ke fokus napas.\n"
+        "• Bisa tambahkan fokus pada suara sekitar atau detak jantung.\n\n"
+        "👉 <b>Efek:</b> Meningkatkan konsentrasi, mengurangi stres, lebih stabil secara emosional."
+    </string>
+
+    <string name="meditasi_berat_content">
+        "<b>Durasi:</b> 30–60 menit (atau lebih)\n\n"
+        "<b>Tujuan:</b> Melatih konsentrasi tingkat tinggi, pembersihan batin, dan pengalaman spiritual.\n\n"
+        "<b>Langkah:</b>\n"
+        "• Cari tempat yang sangat tenang (misalnya ruang khusus atau alam terbuka).\n"
+        "• Duduk bersila dengan posisi tubuh tegap, mata setengah terpejam.\n"
+        "• Atur napas panjang dan dalam sampai ritme stabil.\n"
+        "• Fokus pada satu objek (misalnya: napas, mantra, cahaya imajiner, atau titik di antara alis).\n"
+        "• Jika pikiran melayang, perlahan kembalikan ke objek fokus.\n"
+        "• Latih sampai muncul rasa ringan, damai, atau kesadaran yang lebih luas.\n\n"
+        "👉 <b>Efek:</b> Pengalaman batin lebih dalam, rasa damai total, tapi perlu latihan rutin dan kesiapan mental."
+    </string>
+
+</resources>

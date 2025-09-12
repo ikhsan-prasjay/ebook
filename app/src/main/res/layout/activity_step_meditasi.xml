@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_blue_bg"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="24dp"
+    tools:context=".StepMeditasiActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:text="Pilih Level Meditasi"
+        android:textColor="@color/dark_blue"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:id="@+id/btnRingan"
+        style="@style/Widget.Material3.Button.OutlinedButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:paddingVertical="12dp"
+        android:text="Meditasi Ringan"
+        android:textColor="@color/primary_blue"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btnSedang"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="@color/soft_purple"
+        android:paddingVertical="12dp"
+        android:text="Meditasi Sedang"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btnBerat"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/primary_blue"
+        android:paddingVertical="12dp"
+        android:text="Meditasi Berat"
+        android:textSize="16sp" />
+</LinearLayout>
