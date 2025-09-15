@@ -7,14 +7,20 @@
     android:padding="24dp"
     tools:context=".EbookActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <com.github.barteksc.pdfviewer.PDFView
+        android:id="@+id/pdfView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/btnSelectPdf"
+        android:layout_marginBottom="0dp" />
+
+    <Button
+        android:id="@+id/btnSelectPdf"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center"
-        android:text="Fitur Ebook\nAkan Segera Hadir"
-        android:textColor="@color/accent_purple"
-        android:textSize="22sp"
-        android:textStyle="bold" />
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/primary_blue"
+        android:text="Pilih PDF"
+        android:textColor="@android:color/white" />
 
 </RelativeLayout>
