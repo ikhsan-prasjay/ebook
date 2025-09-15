@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace = "com.ega.ebook"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.ega.ebook"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
@@ -57,4 +57,5 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     // Tambahkan library PDFViewer
     implementation("com.github.mhiew:android-pdf-viewer:3.2.0-beta.1")
+    implementation(libs.androidx.activity)
 }

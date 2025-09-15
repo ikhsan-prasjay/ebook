@@ -12,27 +12,43 @@ class DetailMeditasiActivity : AppCompatActivity() {
         binding = ActivityDetailMeditasiBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Ambil penanda level yang dikirim dari activity sebelumnya
+        // Setup Toolbar
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(false) // Sembunyikan judul default
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)   // Tampilkan tombol kembali
+        binding.toolbar.setNavigationOnClickListener {
+            onBackPressedDispatcher.onBackPressed() // Aksi saat tombol kembali ditekan
+        }
+
+        // Ambil penanda level yang dikirim
         val level = intent.getStringExtra("LEVEL")
 
-        // Gunakan 'when' untuk menentukan konten mana yang akan ditampilkan
+        // Tampilkan konten berdasarkan level
         when (level) {
             "RINGAN" -> {
-                binding.tvTitle.text = "1. Meditasi Ringan"
-                binding.tvContent.text = getString(R.string.meditasi_ringan_content)
+                binding.tvTitle.text = "Meditasi Ringan"
+                // Memisahkan konten dan efek dari strings.xml
+                val fullContent = getString(R.string.meditasi_ringan_content).split("👉")
+                binding.tvContent.text = fullContent.getOrElse(0) { "" }.trim()
+                binding.tvEffect.text = "👉${fullContent.getOrElse(1) { "" }}".trim()
             }
             "SEDANG" -> {
-                binding.tvTitle.text = "2. Meditasi Sedang"
-                binding.tvContent.text = getString(R.string.meditasi_sedang_content)
+                binding.tvTitle.text = "Meditasi Sedang"
+                val fullContent = getString(R.string.meditasi_sedang_content).split("👉")
+                binding.tvContent.text = fullContent.getOrElse(0) { "" }.trim()
+                binding.tvEffect.text = "👉${fullContent.getOrElse(1) { "" }}".trim()
             }
             "BERAT" -> {
-                binding.tvTitle.text = "3. Meditasi Berat"
-                binding.tvContent.text = getString(R.string.meditasi_berat_content)
+                binding.tvTitle.text = "Meditasi Berat"
+                val fullContent = getString(R.string.meditasi_berat_content).split("👉")
+                binding.tvContent.text = fullContent.getOrElse(0) { "" }.trim()
+                binding.tvEffect.text = "👉${fullContent.getOrElse(1) { "" }}".trim()
             }
             else -> {
                 // Fallback jika terjadi error
                 binding.tvTitle.text = "Meditasi"
                 binding.tvContent.text = "Konten tidak ditemukan."
+                binding.tvEffect.text = ""
             }
         }
     }

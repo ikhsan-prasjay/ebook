@@ -10,4 +10,10 @@
     <color name="soft_purple">#D2B4DE</color>
     <color name="text_dark">#1C1C1C</color>
     <color name="text_light">#595959</color>
+
+    <color name="navy_blue">#000080</color>
+    <color name="royal_blue">#4169E1</color>
+    <color name="ghost_white">#F8F8FF</color>
+    <color name="slate_gray">#708090</color>
+    <color name="steel_blue">#4682B4</color>
 </resources>
