@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ega.ebook.databinding.ActivityRiwayatJurnalBinding
 import com.google.firebase.database.DataSnapshot
@@ -11,16 +12,14 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.util.Locale
 
 class RiwayatJurnalActivity : AppCompatActivity() {
 
-    // Binding untuk mengakses komponen layout XML
     private lateinit var binding: ActivityRiwayatJurnalBinding
-    // Referensi ke Firebase Realtime Database
     private lateinit var database: DatabaseReference
-    // List untuk menampung data jurnal
     private lateinit var jurnalList: MutableList<Jurnal>
-    // Adapter untuk RecyclerView
+    private lateinit var originalJurnalList: MutableList<Jurnal> // Simpan daftar asli
     private lateinit var adapter: JurnalAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,69 +27,101 @@ class RiwayatJurnalActivity : AppCompatActivity() {
         binding = ActivityRiwayatJurnalBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Inisialisasi RecyclerView
-        binding.rvJurnal.layoutManager = LinearLayoutManager(this)
-        binding.rvJurnal.setHasFixedSize(true) // Optimasi jika ukuran item tetap
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.setDisplayShowTitleEnabled(true)
 
-        // Inisialisasi list dan adapter
+        binding.rvJurnal.layoutManager = LinearLayoutManager(this)
+        binding.rvJurnal.setHasFixedSize(true)
+
         jurnalList = mutableListOf()
+        originalJurnalList = mutableListOf()
         adapter = JurnalAdapter(jurnalList)
         binding.rvJurnal.adapter = adapter
 
-        // Panggil fungsi untuk mengambil data dari Firebase
         fetchJurnalsFromFirebase()
+        setupSearchView()
     }
 
     private fun fetchJurnalsFromFirebase() {
-        // Tampilkan progress bar saat loading
         binding.progressBar.visibility = View.VISIBLE
         binding.rvJurnal.visibility = View.GONE
         binding.tvEmpty.visibility = View.GONE
 
-        // Tentukan path di Firebase ("jurnals")
         database = FirebaseDatabase.getInstance().getReference("jurnals")
 
-        // Tambahkan listener untuk membaca data
         database.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
-                // Hapus data lama agar tidak duplikat
                 jurnalList.clear()
+                originalJurnalList.clear() // Bersihkan juga daftar asli
 
                 if (snapshot.exists()) {
-                    // Looping semua data di dalam "jurnals"
                     for (jurnalSnap in snapshot.children) {
                         val jurnalData = jurnalSnap.getValue(Jurnal::class.java)
                         jurnalData?.let {
-                            jurnalList.add(it)
+                            // Menambahkan ke posisi pertama agar tidak perlu reverse()
+                            originalJurnalList.add(0, it)
                         }
                     }
-
-                    // Balik urutan list agar data terbaru tampil di paling atas
-                    jurnalList.reverse()
-
-                    // Beri tahu adapter bahwa data telah berubah
+                    // Salin daftar asli ke daftar yang akan ditampilkan
+                    jurnalList.addAll(originalJurnalList)
                     adapter.notifyDataSetChanged()
 
-                    // Tampilkan RecyclerView dan sembunyikan pesan kosong
                     binding.rvJurnal.visibility = View.VISIBLE
                     binding.tvEmpty.visibility = View.GONE
                 } else {
-                    // Jika tidak ada data, tampilkan pesan kosong
                     binding.rvJurnal.visibility = View.GONE
                     binding.tvEmpty.visibility = View.VISIBLE
                 }
 
-                // Sembunyikan progress bar setelah selesai
                 binding.progressBar.visibility = View.GONE
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // Sembunyikan progress bar
                 binding.progressBar.visibility = View.GONE
-
-                // Tampilkan pesan error jika gagal mengambil data
                 Toast.makeText(this@RiwayatJurnalActivity, "Gagal memuat data: ${error.message}", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun setupSearchView() {
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                // Tidak perlu aksi khusus saat submit, karena filter berjalan realtime
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                // Panggil fungsi filter setiap kali teks pencarian berubah
+                filterJurnals(newText)
+                return true
+            }
+        })
+    }
+
+    /**
+     * Fungsi untuk memfilter daftar jurnal berdasarkan query pencarian.
+     */
+    private fun filterJurnals(query: String?) {
+        // 1. Tentukan daftar yang akan ditampilkan berdasarkan query
+        val filteredList = if (query.isNullOrBlank()) {
+            // Jika query kosong, tampilkan semua jurnal asli
+            originalJurnalList
+        } else {
+            // Jika ada query, filter daftar asli
+            val lowerCaseQuery = query.trim().toLowerCase(Locale.ROOT)
+            originalJurnalList.filter { jurnal ->
+                // Cek apakah 'feeling' atau 'message' mengandung query (case-insensitive)
+                val feelingMatch = jurnal.feeling?.toLowerCase(Locale.ROOT)?.contains(lowerCaseQuery) == true
+                val messageMatch = jurnal.message?.toLowerCase(Locale.ROOT)?.contains(lowerCaseQuery) == true
+                feelingMatch || messageMatch
+            }
+        }
+
+        // 2. Perbarui daftar yang terhubung ke adapter
+        jurnalList.clear()
+        jurnalList.addAll(filteredList)
+
+        // 3. Beri tahu adapter bahwa data telah berubah untuk me-refresh tampilan
+        adapter.notifyDataSetChanged()
     }
 }

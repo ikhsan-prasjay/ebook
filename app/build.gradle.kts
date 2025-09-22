@@ -56,6 +56,7 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     // Tambahkan library PDFViewer
     implementation("com.github.mhiew:android-pdf-viewer:3.2.0-beta.1")
+    implementation(libs.androidx.activity)
 
     // DEPENDENSI TESTING YANG DITAMBAHKAN
     testImplementation(libs.junit)
