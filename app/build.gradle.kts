@@ -47,7 +47,6 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
     // Firebase
-
     implementation(platform("com.google.firebase:firebase-bom:33.1.1"))
     implementation("com.google.firebase:firebase-database-ktx")
     implementation("com.google.firebase:firebase-analytics-ktx")
@@ -57,5 +56,9 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     // Tambahkan library PDFViewer
     implementation("com.github.mhiew:android-pdf-viewer:3.2.0-beta.1")
-    implementation(libs.androidx.activity)
+
+    // DEPENDENSI TESTING YANG DITAMBAHKAN
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }
