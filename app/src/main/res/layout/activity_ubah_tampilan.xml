@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:gravity="center_horizontal"
+    android:background="@color/light_blue_bg"
+    tools:context=".UbahTampilanActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pilih Tema Aplikasi"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/dark_blue"
+        android:layout_marginBottom="32dp"/>
+
+    <RadioGroup
+        android:id="@+id/rgTema"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/rbDefault"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tema Default (Biru Terang)"
+            android:checked="true"/>
+
+        <RadioButton
+            android:id="@+id/rbDark"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tema Gelap"/>
+
+        <RadioButton
+            android:id="@+id/rbOcean"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tema Samudera (Hijau Tosca)"/>
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnSimpanTema"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Simpan Perubahan"
+        android:layout_marginTop="40dp"/>
+
+</LinearLayout>

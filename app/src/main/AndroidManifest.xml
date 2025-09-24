@@ -36,6 +36,21 @@
             android:name=".RegisterActivity"
             android:exported="false" />
 
+        <!-- Deklarasi untuk Activity Admin -->
+        <activity
+            android:name=".AdminActivity"
+            android:exported="false" />
+
+        <!-- Deklarasi untuk Fitur Ubah Tampilan -->
+        <activity
+            android:name=".UbahTampilanActivity"
+            android:exported="false" />
+
+        <!-- Deklarasi untuk Fitur Kelola Meditasi -->
+        <activity
+            android:name=".KelolaFiturActivity"
+            android:exported="false" />
+
         <activity
             android:name=".MainActivity"
             android:exported="false" />
